@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pl"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#0a0c10" name="theme-color"/><title>Rozwój Sanktuarium — RPL Last Asylum</title><style>:root {
+  --bg: #0a0c10;
+  --bg2: #10151d;
+  --card: #171e29;
+  --card2: #1c2531;
+  --line: rgba(233, 210, 165, .14);
+  --text: #f4f1e9;
+  --muted: #aeb6c3;
+  --gold: #efd19a;
+  --gold-strong: #e3a84f;
+  --red: #bd5149;
+  --green: #89c7a1;
+  --blue: #9cb8df;
+  --radius: 18px;
+  --shell: 1180px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.62 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
+body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(ellipse 55% 28% at 90% 0%, rgba(158,66,55,.10), transparent), radial-gradient(ellipse 42% 30% at 0% 25%, rgba(80,93,111,.10), transparent); }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+button { font: inherit; cursor: pointer; }
+button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+.shell { width: min(calc(100% - 48px), var(--shell)); margin-inline: auto; }
+.site-header { position: sticky; top: 0; z-index: 30; background: rgba(10,12,16,.94); border-bottom: 1px solid var(--line); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+.header-inner { min-height: 82px; display: flex; align-items: center; gap: 22px; }
+.brand { display: inline-flex; gap: 13px; align-items: center; flex-shrink: 0; line-height: 1.16; font-weight: 850; letter-spacing: .055em; font-size: 17px; }
+.brand .brand-emblem { width: 43px; height: 43px; display: grid; place-items: center; border: 1px solid rgba(239,209,154,.55); background: linear-gradient(135deg,#5e332a,#22242b); border-radius: 12px; color: var(--gold); font-size: 25px; box-shadow: 0 0 24px #6e332b30; }
+.brand small { display: block; color: var(--muted); font-size: 10px; letter-spacing: .2em; font-weight: 650; margin-top: 5px; }
+.site-nav { display: flex; gap: 3px; align-items: center; margin-left: auto; }
+.site-nav a { padding: 10px 12px; border-radius: 9px; color: #b8bec9; font-size: 12.5px; font-weight: 700; white-space: nowrap; transition: background .18s, color .18s; }
+.site-nav a:hover, .site-nav a[aria-current="page"] { color: var(--gold); background: #e6bd7620; }
+.header-cta { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 800; border: 1px solid rgba(239,209,154,.5); border-radius: 9px; color: var(--gold); white-space: nowrap; padding: 10px 13px; }
+.header-cta:hover { background: #e6bd7620; }
+.eyebrow { display: inline-flex; align-items: center; gap: 9px; font-size: 11px; font-weight: 850; letter-spacing: .2em; color: var(--gold-strong); text-transform: uppercase; }
+.eyebrow::before { content: ""; width: 21px; height: 1px; background: currentColor; }
+h1, h2, h3, h4, p { margin-top: 0; }
+h1, h2, h3 { letter-spacing: -.035em; line-height: 1.15; }
+h1 { font-size: clamp(42px, 6vw, 79px); font-weight: 850; }
+h2 { font-size: clamp(27px, 3vw, 42px); }
+h3 { font-size: 22px; }
+.lead { color: var(--muted); font-size: clamp(16px, 1.6vw, 19px); line-height: 1.7; }
+.gold { color: var(--gold); }
+.muted { color: var(--muted); }
+.tag { display: inline-block; padding: 5px 10px; border-radius: 5px; background: rgba(239,209,154,.10); border: 1px solid rgba(239,209,154,.2); color: var(--gold); font-size: 11px; font-weight: 800; letter-spacing: .08em; }
+.tag.red { color: #efb2a6; border-color: #bd51494e; background: #bd51491c; }
+.tag.blue { color: #b6cff0; border-color: #9cb8df43; background: #9cb8df16; }
+.tag.green { color: #a0d7b2; border-color: #89c7a148; background: #89c7a115; }
+.hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line); background: radial-gradient(ellipse 50% 90% at 79% 48%, #41231f 0%, #1a171c 56%, transparent 100%); }
+.hero-grid { min-height: 575px; display: grid; grid-template-columns: 57% 43%; align-items: center; }
+.hero-copy { position: relative; z-index: 2; padding: 80px 0; }
+.hero-copy h1 { max-width: 720px; margin: 18px 0 21px; }
+.hero-copy .lead { max-width: 540px; }
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+.button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 19px; font-weight: 800; font-size: 14px; line-height: 1.1; border-radius: 10px; transition: transform .15s, background .15s; }
+.button:hover { transform: translateY(-2px); }
+.button-primary { background: var(--gold); color: #292015; }
+.button-secondary { border: 1px solid rgba(239,209,154,.4); color: var(--gold); background: rgba(239,209,154,.055); }
+.hero-art { position: relative; height: 100%; min-height: 520px; isolation: isolate; }
+.hero-art::before { content:""; position:absolute; width: 420px; height: 420px; border: 1px solid #e9b97627; border-radius: 50%; top: 42px; left: 4%; box-shadow: 0 0 0 48px #e9b97609,0 0 0 96px #e9b97605; }
+.hero-art::after { content:"RPL"; position:absolute; z-index: 5; left: 8%; bottom: 34px; font-size: 118px; font-weight: 900; line-height: 1; letter-spacing: -.08em; color: #f1d49d08; pointer-events: none; }
+.portrait { position: absolute; width: 50%; aspect-ratio: 1; object-fit: cover; border: 1px solid #e2bb7b65; border-radius: 20px; background:#262029; filter: drop-shadow(0 12px 24px #0008); }
+.portrait.main { width: 63%; right: 6%; top: 11%; z-index: 3; transform: rotate(3deg); }
+.portrait.left { width: 43%; left: 0; top: 37%; z-index: 4; transform: rotate(-7deg); }
+.portrait.bottom { width: 37%; right: 2%; top: 62%; z-index: 2; transform: rotate(9deg); }
+.section { padding: 76px 0; }
+.section-tight { padding: 45px 0; }
+.section-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 27px; }
+.section-head h2 { margin: 9px 0 0; }
+.section-head p { max-width: 400px; margin-bottom: 0; }
+.topics-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.topic-card { border: 1px solid var(--line); border-radius: 17px; background: linear-gradient(155deg,#1c2430,#121821); padding: 27px; min-height: 255px; display: flex; flex-direction: column; position: relative; overflow: hidden; transition: transform .2s,border-color .2s,background .2s; }
+.topic-card::after { content:""; position:absolute; width:120px; height:120px; background: radial-gradient(circle,#e4b96c14,transparent 70%); right:-20px; top:-24px; }
+.topic-card:hover { transform: translateY(-4px); border-color: #e6c48e70; background: #202a37; }
+.topic-card .number { color: var(--gold-strong); font-size: 12px; font-weight: 900; letter-spacing: .16em; }
+.topic-card .topic-icon { font-size: 34px; margin: 20px 0 17px; }
+.topic-card h3 { font-size: 20px; margin-bottom: 9px; }
+.topic-card p { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+.topic-card .go { color: var(--gold); font-size: 13px; font-weight: 800; margin-top: auto; }
+.stat-strip { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line); border-radius: 18px; background: #161b24; overflow: hidden; }
+.stat { text-align: center; padding: 28px 18px; }
+.stat + .stat { border-left: 1px solid var(--line); }
+.stat b { display: block; color: var(--gold); font-size: clamp(29px,3.6vw,46px); line-height: 1.2; font-weight: 900; }
+.stat span { display:block; margin-top: 9px; color: var(--muted); font-size: 12px; }
+.feature-panel { border: 1px solid rgba(224,174,106,.34); border-radius: 22px; padding: 32px; display: grid; grid-template-columns: 185px 1fr; gap: 28px; background: radial-gradient(circle at 7% 45%,#613c29 0%,#261b1b 40%,#171a23 100%); align-items: center; }
+.feature-visual { position:relative; }
+.feature-visual img { border-radius: 14px; border: 1px solid #e2ba8278; transform: rotate(-4deg); box-shadow: 0 16px 28px #0008; }
+.feature-panel h2 { margin: 9px 0 12px; }
+.feature-panel p { color: #c6c6cd; margin: 0 0 18px; }
+.page-banner { border-bottom: 1px solid var(--line); background: radial-gradient(ellipse 45% 110% at 100% 0,#3a2221,transparent 65%), linear-gradient(120deg,#151b25,#0c0f15); }
+.article-head { padding: 69px 0 52px; }
+.article-head h1 { margin: 16px 0 15px; font-size: clamp(38px,5.4vw,67px); }
+.article-head .lead { max-width: 780px; margin-bottom: 0; }
+.breadcrumbs { font-size: 12px; color: #aab1bc; display: flex; gap: 10px; align-items:center; margin-bottom: 20px; }
+.breadcrumbs a { color: var(--gold); }
+.article { padding: 40px 0 76px; }
+.article-section { padding: 28px 0 33px; border-bottom: 1px solid var(--line); }
+.article-section:last-child { border-bottom: 0; }
+.article-section h2 { font-size: clamp(25px,3.2vw,38px); margin: 0 0 20px; }
+.article-section .section-intro { color: var(--muted); max-width: 780px; }
+.cards-2 { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
+.cards-3 { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; }
+.cards-4 { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 13px; }
+.info-card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 23px; }
+.info-card h3 { font-size: 18px; margin-bottom: 10px; }
+.info-card p:last-child { margin-bottom: 0; }
+.info-card p, .info-card li { color: var(--muted); font-size: 14px; }
+.info-card ul { padding-left: 20px; }
+.info-card .big-number { font-size: 36px; font-weight: 900; line-height: 1.1; margin: 12px 0; color: var(--gold); }
+.info-card .subtle-label { color: #a9b2c0; font-size: 11px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+.note { padding: 19px 22px; border-left: 3px solid var(--gold-strong); background: #e6b57013; border-radius: 0 12px 12px 0; margin: 20px 0; }
+.note.red { border-color: #dd7262; background: #bd514917; }
+.note.green { border-color: #7acba0; background: #7acba013; }
+.note strong { color: var(--gold); }
+.note p { margin: 3px 0 0; font-size: 14px; color: #d0d0d2; }
+.note.red strong { color: #f2b0a5; }
+.hero-person { display: flex; align-items:center; gap: 16px; }
+.hero-person img { width: 75px; height: 75px; border-radius: 13px; object-fit: cover; border: 1px solid #f0cd9550; background: #22252c; flex-shrink: 0; }
+.hero-person strong { display: block; font-size: 18px; letter-spacing: -.015em; }
+.hero-person small { color: var(--muted); font-size: 12px; }
+.hero-person .tag { margin-top: 5px; }
+.faction-card { padding: 22px; }
+.faction-card .faction-symbol { width: 60px; height: 60px; background: #ffffff0a; border-radius: 13px; display: grid; place-items: center; margin-bottom: 16px; font-size: 32px; }
+.faction-card b { display: block; color: var(--gold); }
+.faction-card p { margin: 7px 0 0; }
+.bonus-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap: 10px; }
+.bonus-card { border: 1px solid #e5c28c35; background: linear-gradient(155deg,#251f21,#151921); border-radius: 12px; padding: 23px 12px; text-align:center; }
+.bonus-card .bonus-value { display:block; color:var(--gold); font-size: 31px; line-height:1.1; font-weight:900; }
+.bonus-card strong { display:block; font-size: 16px; margin: 8px 0 4px; }
+.bonus-card small { display:block; color:var(--muted); font-size: 11px; }
+.formation { border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(180deg,#1e2532,#141820); padding: 25px; }
+.formation + .formation { margin-top: 15px; }
+.formation-head { display:flex; justify-content:space-between; align-items:center; gap:14px; margin-bottom:22px; }
+.formation-head h3 { margin:0; }
+.formation-zone { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap: 13px; align-items:stretch; }
+.formation-zone.front { grid-template-columns: repeat(2,minmax(0,1fr)); max-width: 620px; margin: 0 auto 20px; }
+.formation-card { border:1px solid #e6c58d35; background:#0e141e; border-radius:14px; padding:15px; text-align:center; }
+.formation-card img { height:115px; width:115px; max-width:100%; object-fit:cover; border-radius:13px; margin:0 auto 12px; border: 1px solid #e8bd8050; }
+.formation-card strong { display:block; font-size:17px; }
+.formation-card small { display:block; color:var(--muted); }
+.zone-label { margin: 12px auto 10px; font-size:11px; font-weight:850; color:var(--gold); letter-spacing:.15em; text-transform:uppercase; text-align:center; }
+.swap { display:grid; grid-template-columns:55px 1fr auto 1fr; align-items:center; gap:13px; padding: 17px; border:1px solid var(--line); background:var(--card); border-radius: 14px; }
+.swap + .swap { margin-top:10px; }
+.swap-index { color:var(--gold); font-size: 24px; font-weight: 900; text-align:center; }
+.swap .hero-person img { width:55px; height:55px; }
+.swap .hero-person strong { font-size:16px; }
+.swap-arrow { color:var(--gold); font-size:20px; }
+.swap-description { grid-column:2 / 5; margin:0; color:var(--muted); font-size:13px; }
+.table-scroll { overflow-x: auto; border:1px solid var(--line); border-radius:15px; }
+table { border-collapse:collapse; width:100%; font-size:14px; text-align:left; }
+th,td { padding:16px 20px; border-bottom:1px solid var(--line); }
+th { color:var(--gold); background:#242330; font-size:12px; text-transform:uppercase; letter-spacing:.09em; }
+td { color:#d8dce2; }
+tbody tr:last-child td { border:0; }
+tbody tr:nth-child(odd) td { background:#151a23; }
+tbody tr:nth-child(even) td { background:#1a202a; }
+tr.focus td { background:#3c2c26 !important; color:#fff; font-weight:800; }
+.stars-selector { display:flex; gap:8px; flex-wrap:wrap; margin:18px 0; }
+.star-button { color:#e4d8c4; background:#202631; border:1px solid #e8c88e30; padding:8px 14px; border-radius:9px; font-weight:800; }
+.star-button[aria-pressed="true"] { background:var(--gold); color:#21180d; }
+.star-result { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.star-result .info-card { padding: 18px 22px; }
+.star-result .big-number { margin: 4px 0; font-size: 31px; }
+.equipment { border:1px solid var(--line); background:var(--card); border-radius:14px; text-align:center; padding:17px 10px; }
+.equipment img { width:113px; height:113px; object-fit:contain; margin: 0 auto 10px; }
+.equipment strong { display:block; font-size:16px; }
+.equipment small { display:block; color:var(--muted); font-size:12px; }
+.skill-card { background:var(--card); border:1px solid var(--line); padding:20px; border-radius:15px; }
+.skill-card h3 { margin:0; }
+.skill-card .hero-person { margin-bottom:16px; }
+.skill-list { padding-left:20px; margin:0; }
+.skill-list li { padding: 5px 0; color:#d6dce4; }
+.skill-list li::marker { color:var(--gold); font-weight:900; }
+.skill-list small { display:block; color:var(--muted); margin:1px 0 4px; }
+.compare-card { padding:26px; border:1px solid var(--line); background:var(--card); border-radius:17px; }
+.compare-card h3 { margin-bottom: 9px; }
+.compare-card p { color:var(--muted); margin-bottom:0; font-size:14px; }
+.compare-card ul { padding-left:19px; color:#d2d7df; font-size:14px; }
+.article-next { margin-top:35px; border:1px solid rgba(239,209,154,.3); border-radius:17px; padding:24px 28px; display:flex; justify-content:space-between; align-items:center; gap:20px; background:linear-gradient(100deg,#272222,#171c24); }
+.article-next strong { display:block; font-size:20px; }
+.article-next span { display:block; color:var(--muted); font-size:13px; }
+.site-footer { border-top:1px solid var(--line); background:#0d1118; padding:36px 0; }
+.footer-inner { display:flex; align-items:start; justify-content:space-between; gap:24px; }
+.footer-inner p { font-size:12px; color:#8b96a4; margin:9px 0 0; max-width:550px; }
+.footer-links { display:flex; flex-wrap:wrap; gap:14px; color:#c2bdad; font-size:12px; font-weight:700; }
+.footer-links a:hover { color:var(--gold); }
+@media (max-width:1020px) {
+  .header-inner { flex-wrap:wrap; padding-block:13px; column-gap:15px; }
+  .site-nav { order:3; width:100%; overflow-x:auto; margin-left:0; padding-bottom:2px; scrollbar-width:thin; }
+  .site-nav a { padding:8px 10px; }
+  .header-cta { margin-left:auto; }
+  .hero-grid { grid-template-columns:55% 45%; }
+  .portrait.main { top:24%; }
+  .portrait.bottom { top:65%; }
+}
+@media (max-width:760px) {
+  .shell { width:min(calc(100% - 32px), var(--shell)); }
+  .hero-grid { display:flex; flex-direction:column; align-items:stretch; }
+  .hero-copy { padding:56px 0 12px; }
+  .hero-copy h1 { font-size:clamp(39px,9.8vw,63px); }
+  .hero-art { min-height:285px; height:285px; }
+  .hero-art::before { top:-5px; left:20%; width:260px; height:260px; }
+  .hero-art .portrait.main { width:210px; right:18%; top:10px; }
+  .hero-art .portrait.left { width:135px; left:9%; top:95px; }
+  .hero-art .portrait.bottom { width:115px; right:5%; top:155px; }
+  .hero-art::after { font-size:74px; bottom:2px; }
+  .topics-grid { grid-template-columns:repeat(2,1fr); }
+  .cards-3,.cards-4 { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .cards-2 { grid-template-columns:1fr; }
+  .feature-panel { grid-template-columns:110px 1fr; padding:21px; gap:17px; }
+  .feature-panel h2 { font-size:25px; }
+  .formation-zone { gap:8px; }
+  .formation-card { padding:10px 5px; }
+  .formation-card img { width:90px; height:90px; }
+  .formation-card strong { font-size:14px; }
+  .swap { grid-template-columns:31px 1fr auto 1fr; padding:12px; gap:7px; }
+  .swap .hero-person { gap:7px; }
+  .swap .hero-person img { width:40px; height:40px; border-radius:7px; }
+  .swap .hero-person strong { font-size:13px; }
+  .swap .hero-person small { font-size:10px; }
+  .footer-inner { flex-direction:column; }
+}
+@media (max-width:520px) {
+  .brand { font-size:14px; }
+  .brand .brand-emblem { width:38px; height:38px; }
+  .header-cta { font-size:11px; padding:8px; }
+  .section { padding:52px 0; }
+  .section-tight { padding:28px 0; }
+  .section-head { display:block; }
+  .section-head p { margin-top:10px; }
+  .topics-grid { grid-template-columns:1fr; }
+  .topic-card { min-height:185px; padding:20px; }
+  .topic-card .topic-icon { margin:10px 0 12px; }
+  .stat-strip { grid-template-columns:1fr; }
+  .stat { padding:18px; }
+  .stat + .stat { border-left:0; border-top:1px solid var(--line); }
+  .feature-panel { grid-template-columns:85px 1fr; padding:17px; gap:15px; }
+  .feature-panel h2 { font-size:21px; }
+  .feature-panel p { font-size:13px; }
+  .article-head { padding:45px 0 37px; }
+  .article { padding-top:18px; }
+  .article-section { padding:25px 0; }
+  .cards-3,.cards-4 { grid-template-columns:1fr; }
+  .bonus-grid { grid-template-columns:repeat(2,1fr); }
+  .star-result { grid-template-columns:1fr 1fr; gap:8px; }
+  .formation-zone.front { gap:10px; }
+  .formation-card img { width:74px; height:74px; }
+  .formation-card strong { font-size:12px; }
+  .formation-card small { font-size:10px; }
+  .swap { grid-template-columns:24px 1fr 15px 1fr; }
+  .swap .hero-person { align-items:flex-start; flex-direction:column; }
+  .swap .hero-person img { width:47px; height:47px; }
+  .swap-description { grid-column:1 / 5; }
+  .article-next { flex-direction:column; align-items:start; }
+}
+@media (prefers-reduced-motion: reduce) { *,*::before,*::after { scroll-behavior:auto !important; transition:none !important; } }
+
+.sanc-hero{padding:70px 0;background:radial-gradient(ellipse at 88% 40%,#4a2821 0%,#171820 48%,#0a0c10 88%);border-bottom:1px solid var(--line)}.sanc-hero h1{max-width:780px;margin:15px 0}.sanc-hero .lead{max-width:750px}.mini-nav{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}.mini-nav a{border:1px solid #efd19a55;padding:9px 13px;border-radius:9px;color:var(--gold);font-size:13px;font-weight:700}.calc-panel{background:linear-gradient(155deg,#1c2430,#121821);border:1px solid var(--line);border-radius:18px;padding:24px}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.field label{display:block;color:var(--muted);font-size:12px;font-weight:700;margin-bottom:6px}.field input,.field select{display:block;width:100%;padding:12px;background:#0c121b;border:1px solid #efd19a3a;color:var(--text);border-radius:9px;font:inherit}.field input:focus,.field select:focus{outline:2px solid var(--gold)}.results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:20px}.result{background:#101720;border:1px solid var(--line);border-radius:13px;padding:16px}.result small{color:var(--muted);display:block;font-size:12px}.result b{display:block;color:var(--gold);font-size:clamp(18px,2.3vw,27px);overflow-wrap:anywhere}.steps{display:grid;gap:12px;margin-top:20px}.step{padding:18px;background:#171e29;border:1px solid var(--line);border-radius:13px}.step h3{font-size:18px;margin-bottom:7px}.step p{font-size:13px;color:var(--muted);margin-bottom:0}.pill{color:var(--gold);font-weight:800}.muted-small{font-size:12px;color:var(--muted)}.source-links{display:flex;gap:10px;flex-wrap:wrap}.source-links a{color:var(--gold);text-decoration:underline}.full-table{overflow:auto;border:1px solid var(--line);border-radius:14px}.full-table table{min-width:850px}.full-table th,.full-table td{padding:11px 13px;font-size:12px}.full-table td:last-child{min-width:230px}.checkrow{display:flex;align-items:start;gap:9px;margin:8px 0;color:#d5dbe4;font-size:14px}.checkrow input{accent-color:#efd19a;margin-top:5px}.action-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.action-row button{border:1px solid #efd19a55;background:#242330;color:var(--gold);padding:11px 15px;border-radius:9px;font-weight:800}.action-row button:first-child{background:var(--gold);color:#292015}.guide-note{border-left:3px solid var(--gold-strong);padding:13px 18px;background:#efd19a10;color:#cbd0d8;border-radius:0 9px 9px 0}.no-print{}@media(max-width:700px){.form-grid,.results{grid-template-columns:1fr 1fr}.sanc-hero{padding:52px 0}.calc-panel{padding:16px}}@media(max-width:460px){.form-grid,.results{grid-template-columns:1fr}.sanc-hero h1{font-size:40px}}@media print{.no-print{display:none!important}body{background:#fff;color:#111}.step,.result,.calc-panel{color:#111}}
+</style><style>
+.building-inputs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.building-inputs label{display:flex;flex-direction:column;gap:4px;color:var(--muted);font-size:12px}.building-inputs input,.cost-table input{width:100%;min-width:0;border:1px solid var(--line);background:#10151d;color:var(--text);padding:10px;border-radius:9px;font:inherit}.building-inputs input:focus,.cost-table input:focus{outline:2px solid var(--gold)}.building-step{border-bottom:1px solid var(--line);padding:10px 0}.building-step strong{color:var(--gold)}.cost-table{overflow-x:auto}.cost-table table{min-width:680px}.cost-table td,.cost-table th{padding:9px}.cost-table input{width:105px}.muted-small{font-size:12px;color:var(--muted)}@media(max-width:550px){.building-inputs{grid-template-columns:1fr}}
+</style></head><body><header class="site-header"><div class="shell header-inner"><a class="brand" href="https://thexiaq.github.io/RPL-Centrum/"><span class="brand-emblem">♜</span><span>LAST ASYLUM<small>RPL · SERWER 337</small></span></a><nav class="site-nav"><a href="#kalkulator">Kalkulator</a><a href="#poziomy">Poziomy</a><a href="#strategia">Strategia</a><a href="#zrodla">Źródła</a><a href="#budynki">Budynki</a></nav><a class="header-cta" href="https://thexiaq.github.io/RPL-Centrum/">Centrum RPL ↗</a></div></header><main><section class="sanc-hero"><div class="shell"><span class="eyebrow">RPL · Poradnik rozwoju bazy</span><h1>Rozwijaj Sanktuarium <span class="gold">z planem.</span></h1><p class="lead">Wymagania S2–S30, koszty zasobów, gwiazdki Kliniki i kalkulator przyspieszeń. Sprawdź, czego potrzebujesz do kolejnego poziomu — bez zgadywania.</p><div class="mini-nav"><a href="#kalkulator">Oblicz rozwój →</a><a href="#poziomy">Wymagania S2–S30 →</a><a href="#strategia">Taktyka budowy →</a></div></div></section><section class="section-tight"><div class="shell"><div class="stat-strip"><div class="stat"><b>30</b><span>Maksymalny poziom Sanktuarium</span></div><div class="stat"><b>150</b><span>Limit poziomu bohaterów przy S30</span></div><div class="stat"><b>326★</b><span>Wymagane gwiazdki Kliniki od S28</span></div></div></div></section><section class="section" id="kalkulator"><div class="shell"><div class="section-head"><div><span class="eyebrow">Narzędzie RPL</span><h2>Kalkulator <span class="gold">rozbudowy.</span></h2></div><p>Podaj poziomy i posiadane zasoby. Wyniki aktualizują się automatycznie.</p></div><div class="calc-panel"><div class="form-grid"><div class="field"><label for="from">Aktualne Sanktuarium</label><select id="from"></select></div><div class="field"><label for="to">Poziom docelowy</label><select id="to"></select></div><div class="field"><label for="speed">Premia szybkości budowy (%)</label><input id="speed" max="10000" min="0" type="number" value="0"/></div><div class="field"><label for="stars">Twoje gwiazdki Kliniki</label><input id="stars" min="0" type="number" value="0"/></div><div class="field"><label for="grain">Posiadane zboże (mln)</label><input id="grain" min="0" step="any" type="number" value="0"/></div><div class="field"><label for="wood">Posiadane drewno (mln)</label><input id="wood" min="0" step="any" type="number" value="0"/></div><div class="field"><label for="herb">Posiadane zioła (mln)</label><input id="herb" min="0" step="any" type="number" value="0"/></div><div class="field"><label>Przyspieszenia — dni / godziny / minuty</label><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px"><input aria-label="Dni przyspieszeń" id="days" min="0" type="number" value="0"/><input aria-label="Godziny przyspieszeń" id="hours" min="0" type="number" value="0"/><input aria-label="Minuty przyspieszeń" id="minutes" min="0" type="number" value="0"/></div></div></div><div aria-live="polite" class="results" id="results"></div><div class="guide-note" style="margin-top:16px">Koszty zasobów w źródłach są zaokrąglone — wyniki są orientacyjne. Czas obejmuje <strong>wyłącznie ulepszanie samego Sanktuarium</strong>, nie budynków wymaganych do awansu. Premia do szybkości jest liczona jako czas bazowy ÷ (1 + premia/100). Pomoc sojuszu i inne skrócenia czasu nie są wliczane.</div><div class="action-row"><button id="copy">Kopiuj podsumowanie</button><button id="reset">Wyczyść dane</button></div></div><div class="section-head" style="margin-top:35px"><div><span class="eyebrow">Twoja ścieżka</span><h2>Krok po kroku</h2></div></div><div class="steps" id="steps"></div></div></section><section class="section" id="budynki"><div class="shell"><div class="section-head"><div><span class="eyebrow">Pełna ścieżka rozwoju</span><h2>Budynki wymagane do awansu.</h2></div><p class="muted">Podaj poziomy budynków. Strona policzy brakujące ulepszenia bez powielania tych samych poziomów.</p></div><div class="info-card"><div class="cards-2"><div><h3>Twój stan budynków</h3><p class="muted">Wpisz aktualny poziom każdego budynku. Dane zostają zapisane na tym urządzeniu.</p><div class="building-inputs" id="building-inputs"></div></div><div><h3>Lista brakujących ulepszeń</h3><div class="note" id="building-summary"></div><div id="building-plan"></div></div></div></div><div class="info-card" style="margin-top:16px"><h3>Opcjonalne koszty budynków pomocniczych</h3><p class="muted">Znalezione koszty i czasy uzupełniają się automatycznie z fanowskich baz gry. Każde pole możesz zmienić ręcznie, np. na podstawie własnego ekranu w grze. Nieweryfikowane poziomy pozostają puste, a suma jest oznaczana jako niepełna. Dane źródłowe mogą być zaokrąglone.</p><div id="cost-rows"></div><div class="note" id="cost-summary"></div><button class="button button-secondary" id="export-plan" type="button">Kopiuj kompletny plan</button></div></div></section><section class="section-tight" id="poziomy"><div class="shell"><div class="section-head"><div><span class="eyebrow">Baza poziomów</span><h2>Wymagania <span class="gold">S2–S30.</span></h2></div><p>Przesuń tabelę w bok na telefonie. Kliknij wybrany poziom w kalkulatorze, aby zobaczyć swoją ścieżkę.</p></div><div class="full-table"><table><thead><tr><th>Poziom</th><th>Zboże</th><th>Drewno</th><th>Zioła</th><th>Czas bazowy</th><th>Klinika</th><th>Wymagane budynki</th></tr></thead><tbody id="level-rows"></tbody></table></div></div></section><section class="section" id="strategia"><div class="shell"><div class="section-head"><div><span class="eyebrow">Porady praktyczne</span><h2>Buduj <span class="gold">mądrzej.</span></h2></div></div><div class="cards-3"><article class="info-card"><span class="tag">01 · PRIORYTET</span><h3 style="margin-top:14px">Pilnuj Laboratorium</h3><p>Od S12 wymagane jest Laboratorium na poziomie o jeden niższym od docelowego Sanktuarium. Rozwijaj je zawczasu, aby uniknąć przestojów.</p></article><article class="info-card"><span class="tag">02 · BLOKADA</span><h3 style="margin-top:14px">Zbieraj gwiazdki Kliniki</h3><p>To warunek odblokowania poziomu, a nie zasób zużywany podczas budowy. Na S28–S30 potrzeba 326 gwiazdek.</p></article><article class="info-card"><span class="tag">03 · CZAS</span><h3 style="margin-top:14px">Planuj przyspieszenia</h3><p>Najpierw sprawdź wymagane budynki i zasoby. Przyspieszanie samego Sanktuarium nie pomoże, jeśli następny poziom jest zablokowany.</p></article></div></div></section><section class="section-tight" id="zrodla"><div class="shell"><span class="eyebrow">Dane i weryfikacja</span><h2>Źródła</h2><p class="muted">Zestawienie przygotowano na podstawie publicznych fanowskich baz gry. Wartości mogą się zmieniać wraz z aktualizacjami. Nazwy budynków zostały przetłumaczone na polski i mogą różnić się od lokalizacji w grze.</p><div class="source-links"><a href="https://lastasylumplague.com/buildings/sanctuary/" rel="noopener" target="_blank">Last Asylum Plague — Sanctuary ↗</a><a href="https://lastasylum.gg/en/buildings/sanctuary" rel="noopener" target="_blank">LastAsylum.gg — Sanctuary ↗</a><a href="https://wiki-last-asylum.com/en/wiki/sanctuary" rel="noopener" target="_blank">Wiki — wymagania i Klinika ↗</a></div></div></section></main><footer class="site-footer"><div class="shell footer-inner"><div><strong>RPL · Last Asylum: Plague</strong><p>Nieoficjalny poradnik społeczności · Serwer 337</p></div><div class="footer-links"><a href="https://thexiaq.github.io/bohater/">Bohaterowie</a><a href="https://thexiaq.github.io/Minister/">Ministrowie</a></div></div></footer><script>const DATA=[{"level":2,"grain":32,"wood":32,"herb":0,"time":2,"stars":0,"req":["—"]},{"level":3,"grain":983,"wood":983,"herb":0,"time":3,"stars":17,"req":["—"]},{"level":4,"grain":2600,"wood":2600,"herb":0,"time":300,"stars":19,"req":["Skład drewna 1","Spichlerz 1","Magazyn ziół 1"]},{"level":5,"grain":19700,"wood":19700,"herb":0,"time":658,"stars":28,"req":["Mur 3"]},{"level":6,"grain":92700,"wood":92700,"herb":0,"time":2063,"stars":47,"req":["Mur 5"]},{"level":7,"grain":236000,"wood":236000,"herb":0,"time":5440,"stars":61,"req":["Plac szkoleniowy 4","Sala sojuszu 3"]},{"level":8,"grain":396000,"wood":396000,"herb":0,"time":10895,"stars":80,"req":["Plac szkoleniowy 6","Sala sojuszu 5"]},{"level":9,"grain":606000,"wood":606000,"herb":209000,"time":15410,"stars":96,"req":["Mur 8","Sala sojuszu 7"]},{"level":10,"grain":749000,"wood":749000,"herb":233000,"time":20123,"stars":112,"req":["Mur 9","Lazaret 7"]},{"level":11,"grain":1850000,"wood":1850000,"herb":602000,"time":26043,"stars":142,"req":["Plac szkoleniowy 10","Laboratorium 7"]},{"level":12,"grain":3100000,"wood":3100000,"herb":959000,"time":33857,"stars":155,"req":["Laboratorium 11","Mur 10","Warsztat antytoksyny 7"]},{"level":13,"grain":3520000,"wood":3520000,"herb":1080000,"time":44013,"stars":173,"req":["Laboratorium 12","Sala sojuszu 11","Farma 7"]},{"level":14,"grain":4910000,"wood":4910000,"herb":1650000,"time":57218,"stars":193,"req":["Laboratorium 13","Statua wojownika 12","Tartak 7"]},{"level":15,"grain":6470000,"wood":6470000,"herb":2290000,"time":80105,"stars":201,"req":["Laboratorium 14","Plac szkoleniowy 14","Ogród ziół 7"]},{"level":16,"grain":11900000,"wood":11900000,"herb":3970000,"time":112146,"stars":215,"req":["Laboratorium 15","Statua wojownika 14","Spichlerz 7"]},{"level":17,"grain":16700000,"wood":16700000,"herb":5140000,"time":157004,"stars":225,"req":["Laboratorium 16","Koszary 15","Skład drewna 7"]},{"level":18,"grain":28200000,"wood":28200000,"herb":9330000,"time":219807,"stars":231,"req":["Laboratorium 17","Plac szkoleniowy 17","Magazyn ziół 7"]},{"level":19,"grain":32700000,"wood":32700000,"herb":11300000,"time":307728,"stars":237,"req":["Laboratorium 18","Statua wojownika 17","Warsztat antytoksyny 10"]},{"level":20,"grain":60000000,"wood":60000000,"herb":18400000,"time":430820,"stars":247,"req":["Laboratorium 19","Sala sojuszu 18","Farma 10"]},{"level":21,"grain":85500000,"wood":85500000,"herb":27600000,"time":577211,"stars":254,"req":["Laboratorium 20","Plac szkoleniowy 20","Tartak 10"]},{"level":22,"grain":111000000,"wood":111000000,"herb":36700000,"time":750375,"stars":260,"req":["Laboratorium 21","Statua wojownika 21","Ogród ziół 10"]},{"level":23,"grain":145000000,"wood":145000000,"herb":42800000,"time":975487,"stars":270,"req":["Laboratorium 22","Lazaret 22","Spichlerz 10"]},{"level":24,"grain":171000000,"wood":171000000,"herb":56300000,"time":1365682,"stars":282,"req":["Laboratorium 23","Mur 23","Skład drewna 10"]},{"level":25,"grain":278000000,"wood":278000000,"herb":97500000,"time":1911955,"stars":292,"req":["Laboratorium 24","Plac szkoleniowy 24","Magazyn ziół 10"]},{"level":26,"grain":387000000,"wood":387000000,"herb":124000000,"time":2676737,"stars":304,"req":["Laboratorium 25","Statua wojownika 25","Warsztat antytoksyny 13"]},{"level":27,"grain":548000000,"wood":548000000,"herb":169000000,"time":3747432,"stars":314,"req":["Laboratorium 26","Plac szkoleniowy 26","Farma 13"]},{"level":28,"grain":731000000,"wood":731000000,"herb":236000000,"time":5246404,"stars":326,"req":["Laboratorium 27","Koszary 27","Tartak 13"]},{"level":29,"grain":1050000000,"wood":1050000000,"herb":316000000,"time":6820324,"stars":326,"req":["Laboratorium 28","Sala sojuszu 28","Ogród ziół 13"]},{"level":30,"grain":1356000000,"wood":1356000000,"herb":441000000,"time":8866423,"stars":326,"req":["Laboratorium 29","Plac szkoleniowy 29","Warsztat antytoksyny 15"]}];const $=id=>document.getElementById(id);const fmt=n=>new Intl.NumberFormat('pl-PL',{maximumFractionDigits:1}).format(n);const short=n=>n>=1e9?fmt(n/1e9)+' mld':n>=1e6?fmt(n/1e6)+' mln':n>=1e3?fmt(n/1e3)+' tys.':fmt(n);const duration=s=>{s=Math.max(0,Math.ceil(s));let d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.ceil(s%3600/60);if(m===60){m=0;h++}if(h===24){h=0;d++}return [d?d+' d':'',h?h+' h':'',m?m+' min':''].filter(Boolean).join(' ')||'0 min'};for(let i=1;i<=29;i++)$('from').add(new Option('S'+i,i));for(let i=2;i<=30;i++)$('to').add(new Option('S'+i,i));$('from').value='27';$('to').value='30';$('level-rows').innerHTML=DATA.map(x=>`<tr><td><strong class="gold">S${x.level}</strong></td><td>${short(x.grain)}</td><td>${short(x.wood)}</td><td>${x.herb?short(x.herb):'—'}</td><td>${duration(x.time)}</td><td>${x.stars||'—'}★</td><td>${x.req.join(' · ')}</td></tr>`).join('');let lastSummary='';function number(id){return Math.max(0,Number($(id).value)||0)}function render(){const from=number('from'),to=number('to'),sel=DATA.filter(x=>x.level>from&&x.level<=to),valid=to>from;const sum=k=>sel.reduce((a,x)=>a+x[k],0),speed=number('speed'),raw=sum('time'),adjusted=raw/(1+speed/100),accelerators=number('days')*86400+number('hours')*3600+number('minutes')*60;const fields=[['Zboże łącznie',short(sum('grain'))],['Drewno łącznie',short(sum('wood'))],['Zioła łącznie',short(sum('herb'))],['Czas bazowy',duration(raw)],['Czas z premią',duration(adjusted)],['Brakujące przyspieszenia',duration(adjusted-accelerators)],['Brakujące zboże',short(Math.max(0,sum('grain')-number('grain')*1e6))],['Brakujące drewno',short(Math.max(0,sum('wood')-number('wood')*1e6))],['Brakujące zioła',short(Math.max(0,sum('herb')-number('herb')*1e6))]];$('results').innerHTML=valid?fields.map(([a,b])=>`<div class="result"><small>${a}</small><b>${b}</b></div>`).join(''):'<p>Poziom docelowy musi być wyższy niż aktualny.</p>';const clinic=number('stars');$('steps').innerHTML=valid?sel.map(x=>`<article class="step"><h3><span class="pill">S${x.level-1} → S${x.level}</span> · ${duration(x.time/(1+speed/100))}</h3><p><strong>Wymagane budynki:</strong> ${x.req.join(', ')}. <strong>Klinika:</strong> ${x.stars}★ ${clinic>=x.stars?'✓':'(brakuje '+(x.stars-clinic)+'★)'}. <strong>Zasoby:</strong> ${short(x.grain)} zboża, ${short(x.wood)} drewna, ${short(x.herb)} ziół.</p><label class="checkrow"><input type="checkbox" data-level="${x.level}"> Ukończono ten etap</label></article>`).join(''):'';lastSummary=`RPL · Sanktuarium S${from} → S${to}
+Zboże: ${short(sum('grain'))}; drewno: ${short(sum('wood'))}; zioła: ${short(sum('herb'))}
+Czas z premią: ${duration(adjusted)}
+Brak przyspieszeń: ${duration(adjusted-accelerators)}
+Koszty orientacyjne, bez budynków wymaganych.`;document.querySelectorAll('[data-level]').forEach(c=>{c.checked=localStorage.getItem('rpl-sanctuary-'+c.dataset.level)==='1';c.addEventListener('change',()=>localStorage.setItem('rpl-sanctuary-'+c.dataset.level,c.checked?'1':'0'))});}document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',render));$('reset').onclick=()=>{for(const id of ['speed','stars','grain','wood','herb','days','hours','minutes'])$(id).value=0;$('from').value=27;$('to').value=30;render()};$('copy').onclick=async()=>{try{await navigator.clipboard.writeText(lastSummary);$('copy').textContent='Skopiowano ✓';setTimeout(()=>$('copy').textContent='Kopiuj podsumowanie',1800)}catch(e){prompt('Skopiuj podsumowanie:',lastSummary)}};render();</script><script>
+// Prerequisite planning uses the same DATA table as the main sanctuary calculator.
+const buildingNames=[...new Set(DATA.flatMap(x=>x.req).filter(x=>x!=='—').map(x=>x.replace(/\s+\d+$/,'')))].sort((a,b)=>a.localeCompare(b,'pl'));
+const buildingInput=document.getElementById('building-inputs');
+const buildingPlan=document.getElementById('building-plan');
+const buildingSummary=document.getElementById('building-summary');
+const costRows=document.getElementById('cost-rows');
+const costSummary=document.getElementById('cost-summary');
+const storePrefix='rpl-sanktuarium-v2-';
+const AUTO_COSTS={"Laboratorium|20":{"grain":49.6,"wood":49.6,"herb":16.4,"time":104.71333333333334,"source":"https://lastasylum.gg/en/buildings/research-lab"},"Laboratorium|21":{"grain":73.2,"wood":73.2,"herb":22.4,"time":140.29444444444445,"source":"https://lastasylum.gg/en/buildings/research-lab"},"Laboratorium|22":{"grain":92.3,"wood":92.3,"herb":29,"time":182.3827777777778,"source":"https://lastasylum.gg/en/buildings/research-lab"},"Laboratorium|23":{"grain":115,"wood":115,"herb":37,"time":237.0977777777778,"source":"https://lastasylum.gg/en/buildings/research-lab"},"Laboratorium|24":{"grain":154,"wood":154,"herb":46,"time":331.93666666666667,"source":"https://lastasylum.gg/en/buildings/research-lab"},"Laboratorium|25":{"grain":244,"wood":244,"herb":80.4,"time":464.7111111111111,"source":"https://lastasylum.gg/en/buildings/research-lab"},"Laboratorium|26":{"grain":354,"wood":354,"herb":108,"time":650.5958333333334,"source":"https://lastasylum.gg/en/buildings/research-lab"},"Laboratorium|27":{"grain":455,"wood":455,"herb":144,"time":910.8341666666668,"source":"https://lastasylum.gg/en/buildings/research-lab"},"Laboratorium|28":{"grain":629,"wood":629,"herb":206,"time":1275.1675,"source":"https://lastasylum.gg/en/buildings/research-lab"},"Laboratorium|29":{"grain":917,"wood":917,"herb":294,"time":1657.7177777777779,"source":"https://lastasylum.gg/en/buildings/research-lab"},"Plac szkoleniowy|20":{"grain":30.19,"wood":30.19,"herb":11.95,"time":89,"source":"https://lastasylum.com/buildings/training-grounds"},"Plac szkoleniowy|21":{"grain":40.15,"wood":40.15,"herb":16.36,"time":120,"source":"https://lastasylum.com/buildings/training-grounds"},"Plac szkoleniowy|22":{"grain":52.26,"wood":52.26,"herb":23.07,"time":156,"source":"https://lastasylum.com/buildings/training-grounds"},"Plac szkoleniowy|23":{"grain":69.39,"wood":69.39,"herb":26.47,"time":203,"source":"https://lastasylum.com/buildings/training-grounds"},"Plac szkoleniowy|24":{"grain":88.49,"wood":88.49,"herb":34.58,"time":284,"source":"https://lastasylum.com/buildings/training-grounds"},"Plac szkoleniowy|25":{"grain":135.5,"wood":135.5,"herb":55.45,"time":398,"source":"https://lastasylum.com/buildings/training-grounds"},"Plac szkoleniowy|26":{"grain":190.1,"wood":190.1,"herb":82.77,"time":557,"source":"https://lastasylum.com/buildings/training-grounds"},"Plac szkoleniowy|27":{"grain":271.5,"wood":271.5,"herb":115.5,"time":780,"source":"https://lastasylum.com/buildings/training-grounds"},"Plac szkoleniowy|28":{"grain":382.3,"wood":382.3,"herb":150.9,"time":1093,"source":"https://lastasylum.com/buildings/training-grounds"},"Plac szkoleniowy|29":{"grain":515.1,"wood":515.1,"herb":211.2,"time":1420,"source":"https://lastasylum.com/buildings/training-grounds"},"Statua wojownika|20":{"grain":14.89,"wood":44.66,"herb":9.996,"time":89,"source":"https://lastasylum.com/buildings/warrior-statue"},"Statua wojownika|21":{"grain":20.5,"wood":61.5,"herb":13.4,"time":120,"source":"https://lastasylum.com/buildings/warrior-statue"},"Sala sojuszu|20":{"grain":29.54,"wood":9.85,"herb":9.578,"time":59,"source":"https://lastasylum.com/buildings/alliance-hall"},"Sala sojuszu|21":{"grain":41.84,"wood":13.95,"herb":13.15,"time":80,"source":"https://lastasylum.com/buildings/alliance-hall"},"Sala sojuszu|22":{"grain":54.72,"wood":18.24,"herb":16.62,"time":104,"source":"https://lastasylum.com/buildings/alliance-hall"},"Sala sojuszu|23":{"grain":65.81,"wood":22.26,"herb":22.7,"time":135,"source":"https://lastasylum.com/buildings/alliance-hall"},"Sala sojuszu|24":{"grain":85.28,"wood":28.09,"herb":27.21,"time":189,"source":"https://lastasylum.com/buildings/alliance-hall"},"Sala sojuszu|25":{"grain":133.6,"wood":45.79,"herb":43.86,"time":265,"source":"https://lastasylum.com/buildings/alliance-hall"},"Sala sojuszu|26":{"grain":209.8,"wood":70.29,"herb":65.34,"time":371,"source":"https://lastasylum.com/buildings/alliance-hall"},"Sala sojuszu|27":{"grain":259.2,"wood":87.74,"herb":87.17,"time":520,"source":"https://lastasylum.com/buildings/alliance-hall"},"Lazaret|20":{"grain":45.3,"wood":15.1,"herb":12.27,"time":89,"source":"https://lastasylum.com/buildings/infirmary"},"Lazaret|21":{"grain":64.64,"wood":21.55,"herb":16.63,"time":120,"source":"https://lastasylum.com/buildings/infirmary"},"Lazaret|22":{"grain":82.73,"wood":27.24,"herb":22.75,"time":156,"source":"https://lastasylum.com/buildings/infirmary"},"Lazaret|23":{"grain":100.2,"wood":34.06,"herb":25.8,"time":203,"source":"https://lastasylum.com/buildings/infirmary"},"Lazaret|24":{"grain":123.6,"wood":40.88,"herb":35.21,"time":284,"source":"https://lastasylum.com/buildings/infirmary"},"Lazaret|25":{"grain":216.5,"wood":70.87,"herb":57.22,"time":398,"source":"https://lastasylum.com/buildings/infirmary"},"Lazaret|26":{"grain":307.6,"wood":102.5,"herb":77.68,"time":557,"source":"https://lastasylum.com/buildings/infirmary"},"Lazaret|27":{"grain":402.8,"wood":134.3,"herb":110.3,"time":780,"source":"https://lastasylum.com/buildings/infirmary"},"Ogród ziół|20":{"grain":5,"wood":5,"herb":1.5,"time":14.958888888888888,"source":"https://lastasylum.gg/en/buildings/herb-garden"},"Ogród ziół|21":{"grain":6.7,"wood":6.7,"herb":2.2,"time":20.042222222222225,"source":"https://lastasylum.gg/en/buildings/herb-garden"},"Ogród ziół|22":{"grain":9.2,"wood":9.2,"herb":2.9,"time":26.054722222222225,"source":"https://lastasylum.gg/en/buildings/herb-garden"},"Ogród ziół|23":{"grain":11.4,"wood":11.4,"herb":3.4,"time":33.87111111111111,"source":"https://lastasylum.gg/en/buildings/herb-garden"},"Ogród ziół|24":{"grain":14.3,"wood":14.3,"herb":4.4,"time":47.41972222222222,"source":"https://lastasylum.gg/en/buildings/herb-garden"},"Ogród ziół|25":{"grain":22.8,"wood":22.8,"herb":7.3,"time":66.3875,"source":"https://lastasylum.gg/en/buildings/herb-garden"},"Ogród ziół|26":{"grain":34.9,"wood":34.9,"herb":11.3,"time":92.94222222222223,"source":"https://lastasylum.gg/en/buildings/herb-garden"},"Ogród ziół|27":{"grain":43.4,"wood":43.4,"herb":13.4,"time":130.11916666666667,"source":"https://lastasylum.gg/en/buildings/herb-garden"},"Ogród ziół|28":{"grain":61.2,"wood":61.2,"herb":19.6,"time":182.16694444444443,"source":"https://lastasylum.gg/en/buildings/herb-garden"},"Ogród ziół|29":{"grain":83.2,"wood":83.2,"herb":27.2,"time":236.81694444444443,"source":"https://lastasylum.gg/en/buildings/herb-garden"},"Ogród ziół|30":{"grain":121,"wood":121,"herb":38.5,"time":307.8619444444445,"source":"https://lastasylum.gg/en/buildings/herb-garden"}};
+const autoCost=(key,kind)=>AUTO_COSTS[key]?.[kind];
+const effectiveCost=(key,kind)=>safeRead('cost-'+key+'-'+kind,autoCost(key,kind)===undefined?'':String(autoCost(key,kind)));
+
+const safeRead=(key,fallback='')=>{try{return localStorage.getItem(storePrefix+key)??fallback}catch(e){return fallback}};
+const safeWrite=(key,value)=>{try{localStorage.setItem(storePrefix+key,String(value))}catch(e){}};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+buildingInput.innerHTML=buildingNames.map((name,i)=>`<label>${esc(name)}<input type="number" min="0" max="40" step="1" data-building="${i}" value="${esc(safeRead('building-'+i,'0'))}"></label>`).join('');
+let currentMissing=[],currentCostKnown={grain:0,wood:0,herb:0,time:0},currentCostMissing=0;
+function planBuildings(){
+ const from=Number(document.getElementById('from').value),to=Number(document.getElementById('to').value);
+ const wanted={};DATA.filter(x=>x.level>from&&x.level<=to).forEach(x=>x.req.forEach(r=>{const m=r.match(/^(.*) (\d+)$/);if(m)wanted[m[1]]=Math.max(wanted[m[1]]||0,Number(m[2]));}));
+ const list=[];Object.entries(wanted).sort((a,b)=>a[0].localeCompare(b[0],'pl')).forEach(([name,target])=>{
+ const i=buildingNames.indexOf(name),el=buildingInput.querySelector(`[data-building="${i}"]`),have=Math.max(0,Math.floor(Number(el?.value)||0));
+ if(have<target)for(let lv=have+1;lv<=target;lv++)list.push({name,level:lv,key:name+'|'+lv});
+ });currentMissing=list;
+ buildingSummary.innerHTML=`<strong>${list.length} ulepszeń budynków pomocniczych do wykonania</strong><p class="muted-small">${Object.keys(wanted).length} rodzajów wymaganych budynków · S${from} → S${to}. Nie uwzględnia budynków, których aktualnego poziomu nie wpisano poprawnie.</p>`;
+ buildingPlan.innerHTML=list.length?list.map(x=>`<div class="building-step"><strong>${esc(x.name)}</strong> → poziom ${x.level}</div>`).join(''):'<p class="muted">Wszystkie wymagane budynki mają odpowiedni poziom (według wpisanych danych).</p>';
+ costRows.innerHTML=list.length?`<div class="cost-table"><table><thead><tr><th>Ulepszenie / źródło</th><th>Zboże (mln)</th><th>Drewno (mln)</th><th>Zioła (mln)</th><th>Czas (godz.)</th></tr></thead><tbody>${list.map(x=>`<tr><td>${esc(x.name)} ${x.level}${AUTO_COSTS[x.key]?`<div class="muted-small"><a href="${esc(AUTO_COSTS[x.key].source)}" target="_blank" rel="noopener" style="color:var(--gold)">Dane z bazy ↗</a> · edytowalne</div>`:`<div class="muted-small">Wpisz ręcznie</div>`}</td>${['grain','wood','herb','time'].map(k=>`<td><input type="number" min="0" step="any" data-cost="${esc(x.key)}" data-kind="${k}" placeholder="?" value="${esc(effectiveCost(x.key,k))}"></td>`).join('')}</tr>`).join('')}</tbody></table></div>`:'<p class="muted">Brak dodatkowych kosztów do wpisania.</p>';
+ costRows.querySelectorAll('input').forEach(el=>el.addEventListener('input',()=>{safeWrite('cost-'+el.dataset.cost+'-'+el.dataset.kind,el.value);sumBuildingCosts()}));sumBuildingCosts();
+}
+function sumBuildingCosts(){
+ const values={grain:0,wood:0,herb:0,time:0};let missing=0;
+ currentMissing.forEach(x=>['grain','wood','herb','time'].forEach(kind=>{const el=[...costRows.querySelectorAll('input')].find(e=>e.dataset.cost===x.key&&e.dataset.kind===kind);if(!el||el.value.trim()===''){missing++;return;}values[kind]+=Math.max(0,Number(el.value)||0)}));
+ currentCostKnown=values;currentCostMissing=missing;
+ const levels=DATA.filter(x=>x.level>Number(document.getElementById('from').value)&&x.level<=Number(document.getElementById('to').value));
+ const total=k=>levels.reduce((n,x)=>n+x[k],0);
+ costSummary.innerHTML=`<strong>Łącznie: Sanktuarium + znane koszty budynków</strong><p>Zboże: ${short(total('grain')+values.grain*1e6)} · Drewno: ${short(total('wood')+values.wood*1e6)} · Zioła: ${short(total('herb')+values.herb*1e6)}</p><p>Czas bazowy: ${duration(total('time')+values.time*3600)}</p>${missing?`<p class="muted-small">⚠ Brakuje ${missing} pól kosztów/czasu. Suma jest niepełna i nie stanowi pełnego kosztu rozbudowy.</p>`:'<p class="muted-small">Wszystkie widoczne koszty dodatkowe mają wartości z bazy lub wpisane ręcznie. Czasy bazowe, bez premii.</p>'}`;
+}
+buildingInput.querySelectorAll('input').forEach(el=>el.addEventListener('input',()=>{safeWrite('building-'+el.dataset.building,el.value);planBuildings()}));
+for(const id of ['from','to'])document.getElementById(id).addEventListener('change',planBuildings);
+document.getElementById('export-plan').addEventListener('click',async()=>{
+ const from=document.getElementById('from').value,to=document.getElementById('to').value;
+ const text=`RPL · Plan rozwoju Sanktuarium S${from} → S${to}\nBrakujące budynki:\n${currentMissing.map(x=>'- '+x.name+' '+x.level).join('\n')||'Brak'}\nKoszty dodatkowe (baza + własne): ${currentCostKnown.grain} mln zboża, ${currentCostKnown.wood} mln drewna, ${currentCostKnown.herb} mln ziół, ${currentCostKnown.time} h.\nNieuzupełnione pola: ${currentCostMissing}.\nUwaga: brakujące koszty nie są wliczone. Dane z baz mogą być zaokrąglone.`;
+ try{await navigator.clipboard.writeText(text);document.getElementById('export-plan').textContent='Skopiowano ✓'}catch(e){window.prompt('Skopiuj plan:',text)}
+});
+planBuildings();
+</script></body></html>
